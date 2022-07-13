@@ -1,0 +1,34 @@
+Introduction
+Before starting this course, please go through the Terraform Constructs course. Now, it is time to learn about Terraform in depth
+Here is the list of topics that will be covered .
+Terraform Module
+Inheriting variable between modules
+Terraform workspace
+Remote backends
+Passing values from modules
+Maintaining multiple environments
+Configuring multiple providers
+
+Modules
+In Terraform Constructs course, you have learned about a module and its uses.
+Let's refresh some of the important points you would be familiar by now.
+A module is like a reusable blueprint of infrastructure.
+Module syntax:
+module "child"
+{
+source = "../child"
+}
+The name of the module should be unique within the configurations because it is used as a reference to the module and outputs.
+terraform get - Command used to download and install the modules for that configuration.
+terraform get - update - Checks the downloaded modules and checks for the recent versions if any.
+
+Inheriting Variables
+You would be familiar with calling the child module from the parent module covered in Terraform Constructs course. It is time, you learn about how to pass the variables in modules.
+Inheriting the variables between modules keeps your Terraform code DRY.
+What is DRY by the way? Follow on.
+
+DRY
+Don't Repeat Yourself (DRY)
+It aims at reducing repeating patterns and code.
+There is no need to write the duplicate code for each environment you are deploying.
+You can write the minimum code and achieve the goal by having maximum reusability.
