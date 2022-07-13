@@ -17,6 +17,8 @@
 # sudo mv terraform /usr/local/bin/
 # terraform -
 
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
 resource "azurerm_resource_group" "rg-user-xyzr" {
   name = "${var.resource_group}"
   location   = "${var.location}"
