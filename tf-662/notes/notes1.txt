@@ -32,3 +32,25 @@ Don't Repeat Yourself (DRY)
 It aims at reducing repeating patterns and code.
 There is no need to write the duplicate code for each environment you are deploying.
 You can write the minimum code and achieve the goal by having maximum reusability.
+
+
+
+
+
+
+
+File Structure
+You will follow the below file structure to inherit the variables between modules.
+
+          modules
+         |
+         |___mod
+         |    |__mod.tf
+         |
+         |___vnet
+              |__vnet.tf
+          |__vars.tf
+                                                          
+There is one vnet and you can configure the vnet by passing the parameters from module.
+
+The variables in the vnet are overriden by the values provided in mod.tf file.
