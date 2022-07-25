@@ -33,12 +33,6 @@ It aims at reducing repeating patterns and code.
 There is no need to write the duplicate code for each environment you are deploying.
 You can write the minimum code and achieve the goal by having maximum reusability.
 
-
-
-
-
-
-
 File Structure
 You will follow the below file structure to inherit the variables between modules.
 
@@ -52,5 +46,18 @@ You will follow the below file structure to inherit the variables between module
           |__vars.tf
                                                           
 There is one vnet and you can configure the vnet by passing the parameters from module.
-
 The variables in the vnet are overriden by the values provided in mod.tf file.
+
+Creating vnet.tf
+Create a folder with name Modules
+
+Create two subfolders of names vnet and mod in the nested_modules folder.
+In the vnet folder, create a virtual network using Terraform configuration. Maintain two files one for main configuration(main.tf) and other for declaring variables(vars.tf)
+Now, create main.tf file like this
+resource "azurerm_virtual_network" "vnet"
+{
+name = "${var.name}"
+address_space = ["10.0.0.0/16"]
+resource_group_name = "${var.resourcegroup}"
+location = "${var.location}"
+}
