@@ -1,0 +1,990 @@
+azurerm_resource_group.sre_handson: Refreshing state... [id=/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711]
+data.azurerm_client_config.core: Read complete after 0s [id=2022-07-12 21:13:55.2811724 +0000 UTC]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Refreshing state... [id=/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711/providers/Microsoft.Storage/storageAccountoft.Storage/storageAccounts/srestacct220711]
+module.dbmodule.azurerm_storage_queue.sre_storageq: Refreshing state... [id=https://srestacct220711.queue.core.windows.net/srestqueue220711]
+module.dbmodule.azurerm_storage_container.sre_stcontainer: Refreshing state... [id=https://srestacct220711.blob.core.windows.net/vhds]
+module.dbmodule.data.azurerm_storage_blob.sre_storageblob: Reading...
+module.dbmodule.data.azurerm_storage_blob.sre_storageblob: Read complete after 0s
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+  - destroy
+
+Terraform will perform the following actions:
+
+  # module.dbmodule.azurerm_mysql_server.sre_mysql will be created
+  + resource "azurerm_mysql_server" "sre_mysql" {
+      + administrator_login               = "mysqladminun"
+      + administrator_login_password      = (sensitive value)
+      + auto_grow_enabled                 = true
+      + backup_retention_days             = 7
+      + create_mode                       = "Default"
+      + fqdn                              = (known after apply)
+      + geo_redundant_backup_enabled      = false
+      + id                                = (known after apply)
+      + infrastructure_encryption_enabled = false
+      + location                          = "southindia"
+      + name                              = "ms-d22m0711"
+      + public_network_access_enabled     = true
+      + resource_group_name               = "azdb220711"
+      + sku_name                          = "B_Gen5_2"
+      + ssl_enforcement_enabled           = true
+      + ssl_minimal_tls_version_enforced  = "TLS1_2"
+      + storage_mb                        = 5120
+      + version                           = "5.7"
+    }
+
+  # module.dbmodule.azurerm_redis_cache.sre_redis_cache will be created
+  + resource "azurerm_redis_cache" "sre_redis_cache" {
+      + capacity                      = 1
+      + enable_non_ssl_port           = false
+      + family                        = "C"
+      + hostname                      = (known after apply)
+      + id                            = (known after apply)
+      + location                      = "southindia"
+      + minimum_tls_version           = "1.2"
+      + name                          = "rd-xe22-cmzl"
+      + port                          = (known after apply)
+      + primary_access_key            = (sensitive value)
+      + primary_connection_string     = (sensitive value)
+      + private_static_ip_address     = (known after apply)
+      + public_network_access_enabled = true
+      + redis_version                 = (known after apply)
+      + replicas_per_master           = (known after apply)
+      + replicas_per_primary          = (known after apply)
+      + resource_group_name           = "azdb220711"
+      + secondary_access_key          = (sensitive value)
+      + secondary_connection_string   = (sensitive value)
+      + sku_name                      = "Basic"
+      + ssl_port                      = (known after apply)
+
+      + redis_configuration {
+          + aof_backup_enabled              = (known after apply)
+          + aof_storage_connection_string_0 = (sensitive value)
+          + aof_storage_connection_string_1 = (sensitive value)
+          + enable_authentication           = (known after apply)
+          + maxclients                      = (known after apply)
+          + maxfragmentationmemory_reserved = (known after apply)
+          + maxmemory_delta                 = (known after apply)
+          + maxmemory_policy                = (known after apply)
+          + maxmemory_reserved              = (known after apply)
+          + notify_keyspace_events          = (known after apply)
+          + rdb_backup_enabled              = (known after apply)
+          + rdb_backup_frequency            = (known after apply)
+          + rdb_backup_max_snapshot_count   = (known after apply)
+          + rdb_storage_connection_string   = (sensitive value)
+        }
+    }
+
+  # module.dbmodule.random_string.acre_name will be destroyed
+  # (because random_string.acre_name is not in configuration)
+  - resource "random_string" "acre_name" {
+      - id          = "pkfw" -> null
+      - length      = 4 -> null
+      - lower       = true -> null
+      - min_lower   = 0 -> null
+      - min_numeric = 0 -> null
+      - min_special = 0 -> null
+      - min_upper   = 0 -> null
+      - number      = true -> null
+      - numeric     = true -> null
+      - result      = "pkfw" -> null
+      - special     = false -> null
+      - upper       = false -> null
+    }
+
+  # module.dbmodule.random_string.key_vault_name will be destroyed
+  # (because random_string.key_vault_name is not in configuration)
+  - resource "random_string" "key_vault_name" {
+      - id          = "kdemqxtp" -> null
+      - length      = 8 -> null
+      - lower       = true -> null
+      - min_lower   = 0 -> null
+      - min_numeric = 0 -> null
+      - min_special = 0 -> null
+      - min_upper   = 0 -> null
+      - number      = false -> null
+      - numeric     = false -> null
+      - result      = "kdemqxtp" -> null
+      - special     = false -> null
+      - upper       = false -> null
+    }
+
+  # module.dbmodule.random_string.redis_enterprise_name will be destroyed
+  # (because random_string.redis_enterprise_name is not in configuration)
+  - resource "random_string" "redis_enterprise_name" {
+      - id          = "rp8z" -> null
+      - length      = 4 -> null
+      - lower       = true -> null
+      - min_lower   = 0 -> null
+      - min_numeric = 0 -> null
+      - min_special = 0 -> null
+      - min_upper   = 0 -> null
+      - number      = true -> null
+      - numeric     = true -> null
+      - result      = "rp8z" -> null
+      - special     = false -> null
+      - upper       = false -> null
+    }
+
+  # module.dbmodule.random_string.secret_name will be destroyed
+  # (because random_string.secret_name is not in configuration)
+  - resource "random_string" "secret_name" {
+      - id          = "iwcbgeuh" -> null
+      - length      = 8 -> null
+      - lower       = true -> null
+      - min_lower   = 0 -> null
+      - min_numeric = 0 -> null
+      - min_special = 0 -> null
+      - min_upper   = 0 -> null
+      - number      = false -> null
+      - numeric     = false -> null
+      - result      = "iwcbgeuh" -> null
+      - special     = false -> null
+      - upper       = false -> null
+    }
+
+Plan: 2 to add, 0 to change, 4 to destroy.
+module.dbmodule.random_string.secret_name: Destroying... [id=iwcbgeuh]
+module.dbmodule.random_string.key_vault_name: Destroying... [id=kdemqxtp]
+module.dbmodule.random_string.redis_enterprise_name: Destroying... [id=rp8z]
+module.dbmodule.random_string.acre_name: Destroying... [id=pkfw]
+module.dbmodule.random_string.secret_name: Destruction complete after 0s
+module.dbmodule.random_string.key_vault_name: Destruction complete after 0s
+module.dbmodule.random_string.redis_enterprise_name: Destruction complete after 0s
+module.dbmodule.random_string.acre_name: Destruction complete after 0s
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Creating...
+module.dbmodule.azurerm_mysql_server.sre_mysql: Creating...
+╷
+│ Error: creating Server: (Name "ms-d22m0711" / Resource Group "azdb220711"): mysql.ServersClient#Create: Failure sending request: StatusCode=403 -- Original Error: Code="RequestDisallowedByPolicy" Message="Resource 'ms-d22m0711' was disallowed by policy. Policy identifiers: '[{\"policyAssignment\":{\"name\":\"AzureB2C\",\"id\":\"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policyAssignments/bc9f3892-439d-4c8e-a4ec-9aa973f5567c\"},\"policyDefinition\":{\"name\":\"AzureB2C_denyHDInsightPolicy\",\"id\":\"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policyDefinitions/AzureB2C_denyHDInsightPolicy\"},\"policySetDefinition\":{\"name\":\"AzureB2C\",\"id\":\"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policySetDefinitions/AzureB2C\"}}]'." Target="ms-d22m0711" AdditionalInfo=[{"info":{"evaluationDetails":{"evaluatedExpressions":[{"expression":"type","expressionKind":"Field","expressionValue":"Microsoft.DBforMySQL/servers","operator":"In","path":"type","result":"True","targetValue":["Microsoft.Advisor","Microsoft.AlertsManagement/actionRules","Microsoft.AzureStack/registrations","Microsoft.Blueprint/blueprintAssignments","Microsoft.BotService/botServices","Microsoft.Capacity/reservationorders","Microsoft.Cache/redis","Microsoft.Cdn/profiles","Microsoft.CertificateRegistration/certificateOrders/certificates","Microsoft.ClassicCompute/domainNames","Microsoft.ClassicNetwork/networkSecurityGroups","Microsoft.ClassicNetwork/virtualNetworks","Microsoft.ClassicNetwork/expressroutecrossconnections","Microsoft.ClassicStorage/storageAccounts","Microsoft.CognitiveServices/accounts","Microsoft.Consumption/balances","Microsoft.ContentModerator/applications","Microsoft.CostManagement","Microsoft.CustomerInsights/hubs","Microsoft.DataBox/jobs","Microsoft.Databricks/workspaces","Microsoft.DataBoxEdge/dataBoxEdgeDevices","Microsoft.DataCatalog/catalogs","Microsoft.DataFactory/factories","Microsoft.DataLakeAnalytics/accounts","Microsoft.DataMigration/services","Microsoft.DBforMariaDB/servers","Microsoft.DBforMySQL/servers","Microsoft.DBforPostgreSQL/servers","Microsoft.Devices/ElasticPools","Microsoft.Devices/IotHubs","Microsoft.DevSpaces/controllers","Microsoft.DevTestLab/labs","Microsoft.DynamicsLcs/lcsprojects","Microsoft.EventGrid/topics","Microsoft.EventHub/namespaces","Microsoft.Features","Microsoft.GuestConfiguration/guestConfigurationAssignments","Microsoft.HDInsight/clusters","Microsoft.ImportExport/jobs","Microsoft.Intune/diagnosticsettings","Microsoft.IoTCentral/IoTApps","Microsoft.IoTSpaces/Graph","Microsoft.KeyVault/vaults","Microsoft.Kusto/Clusters","Microsoft.LabServices/accounts","Microsoft.MachineLearning","Microsoft.MachineLearningCompute","Microsoft.MachineLearningModelManagement","Microsoft.MachineLearning/commitmentPlans","Microsoft.MachineLearningServices","Microsoft.ManagedIdentity/userAssignedIdentities","Microsoft.ManagedLab/labAccounts","Microsoft.Migrate/projects","Microsoft.NetApp/netAppAccounts","Microsoft.OffAzure/HyperVSites","Microsoft.OffAzure/VMwareSites","Microsoft.PolicyInsights","Microsoft.Portal/dashboards","Microsoft.Relay/namespaces","Microsoft.RecoveryServices/vaults","Microsoft.Scheduler/jobcollections","Microsoft.SecurityGraph/diagnosticsettings","Microsoft.ServiceBus/namespaces","Microsoft.ServiceFabric/clusters","Microsoft.SignalRService/SignalR","Microsoft.Solutions","microsoft.storagesync/storageSyncServices","Microsoft.StorSimple/managers","Microsoft.StreamAnalytics/streamingjobs","Microsoft.Subscription","Microsoft.TimeSeriesInsights/environments","Microsoft.VisualStudio/Extension","Microsoft.WorkloadMonitor"]}]},"policyAssignmentDisplayName":"AzureB2C","policyAssignmentId":"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policyAssignments/bc9f3892-439d-4c8e-a4ec-9aa973f5567c","policyAssignmentName":"bc9f3892-439d-4c8e-a4ec-9aa973f5567c","policyAssignmentParameters":{},"policyAssignmentScope":"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2","policyDefinitionDisplayName":"AzureB2C_denyHDInsightPolicy","policyDefinitionEffect":"deny","policyDefinitionId":"/subseferenceId":"18243049048371414054","policySetDefinitionDisplayName":"AzureB2C","policySetDefinitionId":"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policySetDefinitions/AzureB2C","policySetDefinitionName":"AzureB2C"},"type":"PolicyViolation"}]
+│
+│   with module.dbmodule.azurerm_mysql_server.sre_mysql,
+│   on modules\azmysql.tf line 1, in resource "azurerm_mysql_server" "sre_mysql":
+│    1: resource "azurerm_mysql_server" "sre_mysql" {
+│
+╵
+╷
+│ Error: creating Redis Cache "rd-xe22-cmzl" (Resource Group "azdb220711"): redis.Client#Create: Failure sending request: StatusCode=403 -- Original Error: Code="RequestDisallowedByPolicy" Message="Resource 'rd-xe22-cmzl' was disallowed by policy. Policy identifiers: '[{\"policyAssignment\":{\"name\":\"AzureB2C\",\"id\":\"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policyAssignments/bc9f3892-439d-4c8e-a4ec-9aa973f5567c\"},\"policyDefinition\":{\"name\":\"AzureB2C_denyHDInsightPolicy\",\"id\":\"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policyDefinitions/AzureB2C_denyHDInsightPolicy\"},\"policySetDefinition\":{\"name\":\"AzureB2C\",\"id\":\"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policySetDefinitions/AzureB2C\"}}]'." Target="rd-xe22-cmzl" AdditionalInfo=[{"info":{"evaluationDetails":{"evaluatedExpressions":[{"expression":"type","expressionKind":"Field","expressionValue":"Microsoft.Cache/redis","operator":"In","path":"type","result":"True","targetValue":["Microsoft.Advisor","Microsoft.AlertsManagement/actionRules","Microsoft.AzureStack/registrations","Microsoft.Blueprint/blueprintAssignments","Microsoft.BotService/botServices","Microsoft.Capacity/reservationorders","Microsoft.Cache/redis","Microsoft.Cdn/profiles","Microsoft.CertificateRegistration/certificateOrders/certificates","Microsoft.ClassicCompute/domainNames","Microsoft.ClassicNetwork/networkSecurityGroups","Microsoft.ClassicNetwork/virtualNetworks","Microsoft.ClassicNetwork/expressroutecrossconnections","Microsoft.ClassicStorage/storageAccounts","Microsoft.CognitiveServices/accounts","Microsoft.Consumption/balances","Microsoft.ContentModerator/applications","Microsoft.CostManagement","Microsofoft.DataLakeAnalytics/accounts","Microsoft.DataMigration/services","Microsoft.DBforMariaDB/servers","Microsoft.DBforMySQL/servers","Microsoft.DBforPostgreSQL/servers","Microsoft.Devices/ElasticPools","Microsoft.Devices/IotHubs","Microsoft.DevSpaces/controllers","Microsoft.DevTestLab/labs","Microsoft.DynamicsLcs/lcsprojects","Microsoft.EventGrid/topics","Microsoft.EventHub/namespaces","Microsoft.Features","Microsoft.GuestConfiguration/guestConfigurationAssignments","Microsoft.HDInsight/clusters","Microsoft.ImportExport/jobs","Microsoft.Intune/diagnosticsettings","Microsoft.IoTCentral/IoTApps","Microsoft.IoTSpaces/Graph","Microsoft.KeyVault/vaults","Microsoft.Kusto/Clusters","Microsoft.LabServices/accounts","Microsoft.MachineLearning","Microsoft.MachineLearningCompute","Microsoft.MachineLearningModelManagement","Microsoft.MachineLearning/commitmentPlans","Microsoft.MachineLearningServices","Microsoft.ManagedIdentity/userAssignedIdentities","Microsoft.ManagedLab/labAccounts","Microsoft.Migrate/projects","Microsoft.NetApp/netAppAccounts","Microsoft.OffAzure/HyperVSites","Microsoft.OffAzure/VMwareSites","Microsoft.PolicyInsights","Microsoft.Portal/dashboards","Microsoft.Relay/namespaces","Microsoft.RecoveryServices/vaults","Microsoft.Scheduler/jobcollections","Microsoft.SecurityGraph/diagnosticsettings","Microsoft.ServiceBus/namespaces","Microsoft.ServiceFabric/clusters","Microsoft.SignalRService/SignalR","Microsoft.Solutions","microsoft.storagesync/storageSyncServices","Microsoft.StorSimple/managers","Microsoft.StreamAnalytics/streamingjobs","Microsoft.Subscription","Microsoft.TimeSeriesInsights/environments","Microsoft.VisualStudio/Extension","Microsoft.WorkloadMonitor"]}]},"policyAssignmentDisplayName":"AzureB2C","policyAssignmentId":"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policyAssignments/bc9f3892-439d-4c8e-a4ec-9aa973f5567c","policyAssignmentName":"bc9f3892-439d-4c8e-a4ec-9aa973f5567c","policyAssignmentParameters":{},"policyAssignmentScope":"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2","policyDefinitionDisplayName":"AzureB2C_denyHDInsightPolicy","policyDefinitionEffect":"deny","policyDefinitionId":"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policyDefinitions/AzureB2C_denyHDInsightPolicy","policyDefinitionName":"AzureB2C_denyHDInsightPolicy","policyDefinitionReferenceId":"18243049048371414054","policySetDefinitionDisplayName":"AzureB2C","policySetDefinitionId":"/subscriptions/9024BB99-9109-4127-81FD-C53C79F586B2/providers/Microsoft.Authorization/policySetDefinitions/AzureB2C","policySetDefinitionName":"AzureB2C"},"type":"PolicyViolation"}]
+│
+│   with module.dbmodule.azurerm_redis_cache.sre_redis_cache,
+│   on modules\azredis.tf line 1, in resource "azurerm_redis_cache" "sre_redis_cache":
+│    1: resource "azurerm_redis_cache" "sre_redis_cache" {
+│
+╵
+PS D:\src\azuretf> az login
+A web browser has been opened at https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize. Please continue the login in the web browser. If no web browser is available or if the web browser fails to open, use device code flow with `az login --use-device-code`.
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "c5a2d019-9dc9-4a4b-9b09-34b4ffd71eda",
+    "id": "9035580b-9584-43fc-aad5-db913bac8f63",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "tcsazurebasic",
+    "state": "Enabled",
+    "tenantId": "c5a2d019-9dc9-4a4b-9b09-34b4ffd71eda",
+    "user": {
+      "name": "Sreekanth_1657660688230@tcsazurebasic.onmicrosoft.com",
+      "type": "user"
+    }
+  }
+]
+PS D:\src\azuretf> terraform plan
+module.dbmodule.random_string.resource_group_name: Refreshing state... [id=cmzl]
+azurerm_resource_group.sre_handson: Refreshing state... [id=/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711]
+data.azurerm_client_config.core: Reading...
+data.azurerm_client_config.core: Read complete after 0s [id=2022-07-12 21:20:40.6821733 +0000 UTC]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Refreshing state... [id=/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711/providers/Microsoft.Storage/storageAccounts/srestacct220711]
+module.dbmodule.azurerm_storage_queue.sre_storageq: Refreshing state... [id=https://srestacct220711.queue.core.windows.net/srestqueue220711]
+module.dbmodule.azurerm_storage_container.sre_stcontainer: Refreshing state... [id=https://srestacct220711.blob.core.windows.net/vhds]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply" which may have affected this plan:
+
+  # azurerm_resource_group.sre_handson has been deleted
+  - resource "azurerm_resource_group" "sre_handson" {
+        id       = "/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711"
+      - location = "southindia" -> null
+      - name     = "azdb220711" -> null
+        tags     = {}
+    }
+
+  # module.dbmodule.azurerm_storage_account.sre_storageacct has been deleted
+  - resource "azurerm_storage_account" "sre_storageacct" {
+        id                                = "/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711/providers/Microsoft.Storage/storageAccounts/srestacct220711"
+      - name                              = "srestacct220711" -> null
+        tags                              = {}
+        # (34 unchanged attributes hidden)
+
+
+
+
+        # (4 unchanged blocks hidden)
+    }
+
+  # module.dbmodule.azurerm_storage_container.sre_stcontainer has been deleted
+  - resource "azurerm_storage_container" "sre_stcontainer" {
+        id                      = "https://srestacct220711.blob.core.windows.net/vhds"
+      - name                    = "vhds" -> null
+        # (6 unchanged attributes hidden)
+    }
+
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may include actions to undo or respond to these changes.      
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # azurerm_resource_group.sre_handson will be created
+  + resource "azurerm_resource_group" "sre_handson" {
+      + id       = (known after apply)
+      + location = "southindia"
+      + name     = "azdb220711"
+    }
+
+  # module.dbmodule.data.azurerm_storage_blob.sre_storageblob will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "azurerm_storage_blob" "sre_storageblob" {
+      + access_tier            = (known after apply)
+      + content_md5            = (known after apply)
+      + content_type           = (known after apply)
+      + id                     = (known after apply)
+      + metadata               = (known after apply)
+      + name                   = "srestblob220711"
+      + storage_account_name   = "srestacct220711"
+      + storage_container_name = "vhds"
+      + type                   = (known after apply)
+      + url                    = (known after apply)
+
+      + timeouts {
+          + read = (known after apply)
+        }
+    }
+
+  # module.dbmodule.azurerm_mysql_server.sre_mysql will be created
+  + resource "azurerm_mysql_server" "sre_mysql" {
+      + administrator_login               = "mysqladminun"
+      + administrator_login_password      = (sensitive value)
+      + auto_grow_enabled                 = true
+      + backup_retention_days             = 7
+      + create_mode                       = "Default"
+      + fqdn                              = (known after apply)
+      + geo_redundant_backup_enabled      = false
+      + id                                = (known after apply)
+      + infrastructure_encryption_enabled = false
+      + location                          = "southindia"
+      + name                              = "ms-d22m0711"
+      + public_network_access_enabled     = true
+      + resource_group_name               = "azdb220711"
+      + sku_name                          = "B_Gen5_2"
+      + ssl_enforcement_enabled           = true
+      + ssl_minimal_tls_version_enforced  = "TLS1_2"
+      + storage_mb                        = 5120
+      + version                           = "5.7"
+    }
+
+  # module.dbmodule.azurerm_redis_cache.sre_redis_cache will be created
+  + resource "azurerm_redis_cache" "sre_redis_cache" {
+      + capacity                      = 1
+      + enable_non_ssl_port           = false
+      + family                        = "C"
+      + hostname                      = (known after apply)
+      + id                            = (known after apply)
+      + location                      = "southindia"
+      + minimum_tls_version           = "1.2"
+      + name                          = "rd-xe22-cmzl"
+      + port                          = (known after apply)
+      + primary_access_key            = (sensitive value)
+      + primary_connection_string     = (sensitive value)
+      + private_static_ip_address     = (known after apply)
+      + public_network_access_enabled = true
+      + redis_version                 = (known after apply)
+      + replicas_per_master           = (known after apply)
+      + replicas_per_primary          = (known after apply)
+      + resource_group_name           = "azdb220711"
+      + secondary_access_key          = (sensitive value)
+      + secondary_connection_string   = (sensitive value)
+      + sku_name                      = "Basic"
+      + ssl_port                      = (known after apply)
+
+      + redis_configuration {
+          + aof_backup_enabled              = (known after apply)
+          + aof_storage_connection_string_0 = (sensitive value)
+          + aof_storage_connection_string_1 = (sensitive value)
+          + enable_authentication           = (known after apply)
+          + maxclients                      = (known after apply)
+          + maxfragmentationmemory_reserved = (known after apply)
+          + maxmemory_delta                 = (known after apply)
+          + maxmemory_policy                = (known after apply)
+          + maxmemory_reserved              = (known after apply)
+          + notify_keyspace_events          = (known after apply)
+          + rdb_backup_enabled              = (known after apply)
+          + rdb_backup_frequency            = (known after apply)
+          + rdb_backup_max_snapshot_count   = (known after apply)
+          + rdb_storage_connection_string   = (sensitive value)
+        }
+    }
+
+  # module.dbmodule.azurerm_storage_account.sre_storageacct will be created
+  + resource "azurerm_storage_account" "sre_storageacct" {
+      + access_tier                       = (known after apply)
+      + account_kind                      = "StorageV2"
+      + account_replication_type          = "LRS"
+      + account_tier                      = "Standard"
+      + allow_nested_items_to_be_public   = true
+      + cross_tenant_replication_enabled  = true
+      + enable_https_traffic_only         = true
+      + id                                = (known after apply)
+      + infrastructure_encryption_enabled = false
+      + is_hns_enabled                    = false
+      + large_file_share_enabled          = (known after apply)
+      + location                          = "southindia"
+      + min_tls_version                   = "TLS1_2"
+      + name                              = "srestacct220711"
+      + nfsv3_enabled                     = false
+      + primary_access_key                = (sensitive value)
+      + primary_blob_connection_string    = (sensitive value)
+      + primary_blob_endpoint             = (known after apply)
+      + primary_blob_host                 = (known after apply)
+      + primary_connection_string         = (sensitive value)
+      + primary_dfs_endpoint              = (known after apply)
+      + primary_dfs_host                  = (known after apply)
+      + primary_file_endpoint             = (known after apply)
+      + primary_file_host                 = (known after apply)
+      + primary_location                  = (known after apply)
+      + primary_queue_endpoint            = (known after apply)
+      + primary_queue_host                = (known after apply)
+      + primary_table_endpoint            = (known after apply)
+      + primary_table_host                = (known after apply)
+      + primary_web_endpoint              = (known after apply)
+      + primary_web_host                  = (known after apply)
+      + queue_encryption_key_type         = "Service"
+      + resource_group_name               = "azdb220711"
+      + secondary_access_key              = (sensitive value)
+      + secondary_blob_connection_string  = (sensitive value)
+      + secondary_blob_endpoint           = (known after apply)
+      + secondary_blob_host               = (known after apply)
+      + secondary_connection_string       = (sensitive value)
+      + secondary_dfs_endpoint            = (known after apply)
+      + secondary_dfs_host                = (known after apply)
+      + secondary_file_endpoint           = (known after apply)
+      + secondary_file_host               = (known after apply)
+      + secondary_location                = (known after apply)
+      + secondary_queue_endpoint          = (known after apply)
+      + secondary_queue_host              = (known after apply)
+      + secondary_table_endpoint          = (known after apply)
+      + secondary_table_host              = (known after apply)
+      + secondary_web_endpoint            = (known after apply)
+      + secondary_web_host                = (known after apply)
+      + shared_access_key_enabled         = true
+      + table_encryption_key_type         = "Service"
+
+      + blob_properties {
+          + change_feed_enabled      = (known after apply)
+          + default_service_version  = (known after apply)
+          + last_access_time_enabled = (known after apply)
+          + versioning_enabled       = (known after apply)
+
+          + container_delete_retention_policy {
+              + days = (known after apply)
+            }
+
+          + cors_rule {
+              + allowed_headers    = (known after apply)
+              + allowed_methods    = (known after apply)
+              + allowed_origins    = (known after apply)
+              + exposed_headers    = (known after apply)
+              + max_age_in_seconds = (known after apply)
+            }
+
+          + delete_retention_policy {
+              + days = (known after apply)
+            }
+        }
+
+      + network_rules {
+          + bypass                     = (known after apply)
+          + default_action             = (known after apply)
+          + ip_rules                   = (known after apply)
+          + virtual_network_subnet_ids = (known after apply)
+
+          + private_link_access {
+              + endpoint_resource_id = (known after apply)
+              + endpoint_tenant_id   = (known after apply)
+            }
+        }
+
+      + queue_properties {
+          + cors_rule {
+              + allowed_headers    = (known after apply)
+              + allowed_methods    = (known after apply)
+              + allowed_origins    = (known after apply)
+              + exposed_headers    = (known after apply)
+              + max_age_in_seconds = (known after apply)
+            }
+
+          + hour_metrics {
+              + enabled               = (known after apply)
+              + include_apis          = (known after apply)
+              + retention_policy_days = (known after apply)
+              + version               = (known after apply)
+            }
+
+          + logging {
+              + delete                = (known after apply)
+              + read                  = (known after apply)
+              + retention_policy_days = (known after apply)
+              + version               = (known after apply)
+              + write                 = (known after apply)
+            }
+
+          + minute_metrics {
+              + enabled               = (known after apply)
+              + include_apis          = (known after apply)
+              + retention_policy_days = (known after apply)
+              + version               = (known after apply)
+            }
+        }
+
+      + routing {
+          + choice                      = (known after apply)
+          + publish_internet_endpoints  = (known after apply)
+          + publish_microsoft_endpoints = (known after apply)
+        }
+
+      + share_properties {
+          + cors_rule {
+              + allowed_headers    = (known after apply)
+              + allowed_methods    = (known after apply)
+              + allowed_origins    = (known after apply)
+              + exposed_headers    = (known after apply)
+            }
+
+          + retention_policy {
+              + days = (known after apply)
+            }
+
+          + smb {
+              + authentication_types            = (known after apply)
+              + channel_encryption_type         = (known after apply)
+              + kerberos_ticket_encryption_type = (known after apply)
+              + versions                        = (known after apply)
+            }
+        }
+    }
+
+  # module.dbmodule.azurerm_storage_container.sre_stcontainer will be created
+  + resource "azurerm_storage_container" "sre_stcontainer" {
+      + container_access_type   = "private"
+      + has_immutability_policy = (known after apply)
+      + has_legal_hold          = (known after apply)
+      + id                      = (known after apply)
+      + metadata                = (known after apply)
+      + name                    = "vhds"
+      + resource_manager_id     = (known after apply)
+      + storage_account_name    = "srestacct220711"
+    }
+
+  # module.dbmodule.azurerm_storage_queue.sre_storageq will be created
+  + resource "azurerm_storage_queue" "sre_storageq" {
+      + id                   = (known after apply)
+      + name                 = "srestqueue220711"
+      + storage_account_name = "srestacct220711"
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
+PS D:\src\azuretf> terraform apply -auto-approve=1
+module.dbmodule.random_string.resource_group_name: Refreshing state... [id=cmzl]
+data.azurerm_client_config.core: Reading...
+azurerm_resource_group.sre_handson: Refreshing state... [id=/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711]
+data.azurerm_client_config.core: Read complete after 0s [id=2022-07-12 21:21:10.8078299 +0000 UTC]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Refreshing state... [id=/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711/providers/Microsoft.Storage/storageAccounts/srestacct220711]
+module.dbmodule.azurerm_storage_queue.sre_storageq: Refreshing state... [id=https://srestacct220711.queue.core.windows.net/srestqueue220711]
+module.dbmodule.azurerm_storage_container.sre_stcontainer: Refreshing state... [id=https://srestacct220711.blob.core.windows.net/vhds]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply" which may have affected this plan:
+
+  # azurerm_resource_group.sre_handson has been deleted
+  - resource "azurerm_resource_group" "sre_handson" {
+        id       = "/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711"
+      - location = "southindia" -> null
+      - name     = "azdb220711" -> null
+        tags     = {}
+    }
+
+  # module.dbmodule.azurerm_storage_account.sre_storageacct has been deleted
+  - resource "azurerm_storage_account" "sre_storageacct" {
+        id                                = "/subscriptions/9024bb99-9109-4127-81fd-c53c79f586b2/resourceGroups/azdb220711/providers/Microsoft.Storage/storageAccounts/srestacct220711"
+      - name                              = "srestacct220711" -> null
+        tags                              = {}
+        # (34 unchanged attributes hidden)
+
+
+
+
+        # (4 unchanged blocks hidden)
+    }
+
+  # module.dbmodule.azurerm_storage_container.sre_stcontainer has been deleted
+  - resource "azurerm_storage_container" "sre_stcontainer" {
+        id                      = "https://srestacct220711.blob.core.windows.net/vhds"
+      - name                    = "vhds" -> null
+        # (6 unchanged attributes hidden)
+    }
+
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may include actions to undo or respond to these changes.      
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # azurerm_resource_group.sre_handson will be created
+  + resource "azurerm_resource_group" "sre_handson" {
+      + id       = (known after apply)
+      + location = "southindia"
+      + name     = "azdb220711"
+    }
+
+  # module.dbmodule.data.azurerm_storage_blob.sre_storageblob will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "azurerm_storage_blob" "sre_storageblob" {
+      + access_tier            = (known after apply)
+      + content_md5            = (known after apply)
+      + content_type           = (known after apply)
+      + id                     = (known after apply)
+      + metadata               = (known after apply)
+      + name                   = "srestblob220711"
+      + storage_account_name   = "srestacct220711"
+      + storage_container_name = "vhds"
+      + type                   = (known after apply)
+      + url                    = (known after apply)
+
+      + timeouts {
+          + read = (known after apply)
+        }
+    }
+
+  # module.dbmodule.azurerm_mysql_server.sre_mysql will be created
+  + resource "azurerm_mysql_server" "sre_mysql" {
+      + administrator_login               = "mysqladminun"
+      + administrator_login_password      = (sensitive value)
+      + auto_grow_enabled                 = true
+      + backup_retention_days             = 7
+      + create_mode                       = "Default"
+      + fqdn                              = (known after apply)
+      + geo_redundant_backup_enabled      = false
+      + id                                = (known after apply)
+      + infrastructure_encryption_enabled = false
+      + location                          = "southindia"
+      + name                              = "ms-d22m0711"
+      + public_network_access_enabled     = true
+      + resource_group_name               = "azdb220711"
+      + sku_name                          = "B_Gen5_2"
+      + ssl_enforcement_enabled           = true
+      + ssl_minimal_tls_version_enforced  = "TLS1_2"
+      + storage_mb                        = 5120
+      + version                           = "5.7"
+    }
+
+  # module.dbmodule.azurerm_redis_cache.sre_redis_cache will be created
+  + resource "azurerm_redis_cache" "sre_redis_cache" {
+      + capacity                      = 1
+      + enable_non_ssl_port           = false
+      + family                        = "C"
+      + hostname                      = (known after apply)
+      + id                            = (known after apply)
+      + location                      = "southindia"
+      + minimum_tls_version           = "1.2"
+      + name                          = "rd-xe22-cmzl"
+      + port                          = (known after apply)
+      + primary_access_key            = (sensitive value)
+      + primary_connection_string     = (sensitive value)
+      + private_static_ip_address     = (known after apply)
+      + public_network_access_enabled = true
+      + redis_version                 = (known after apply)
+      + replicas_per_master           = (known after apply)
+      + replicas_per_primary          = (known after apply)
+      + resource_group_name           = "azdb220711"
+      + secondary_access_key          = (sensitive value)
+      + secondary_connection_string   = (sensitive value)
+      + sku_name                      = "Basic"
+      + ssl_port                      = (known after apply)
+
+      + redis_configuration {
+          + aof_backup_enabled              = (known after apply)
+          + aof_storage_connection_string_0 = (sensitive value)
+          + aof_storage_connection_string_1 = (sensitive value)
+          + enable_authentication           = (known after apply)
+          + maxclients                      = (known after apply)
+          + maxfragmentationmemory_reserved = (known after apply)
+          + maxmemory_delta                 = (known after apply)
+          + maxmemory_policy                = (known after apply)
+          + maxmemory_reserved              = (known after apply)
+          + notify_keyspace_events          = (known after apply)
+          + rdb_backup_enabled              = (known after apply)
+          + rdb_backup_frequency            = (known after apply)
+          + rdb_backup_max_snapshot_count   = (known after apply)
+          + rdb_storage_connection_string   = (sensitive value)
+        }
+    }
+
+  # module.dbmodule.azurerm_storage_account.sre_storageacct will be created
+  + resource "azurerm_storage_account" "sre_storageacct" {
+      + access_tier                       = (known after apply)
+      + account_kind                      = "StorageV2"
+      + account_replication_type          = "LRS"
+      + account_tier                      = "Standard"
+      + allow_nested_items_to_be_public   = true
+      + cross_tenant_replication_enabled  = true
+      + enable_https_traffic_only         = true
+      + id                                = (known after apply)
+      + infrastructure_encryption_enabled = false
+      + is_hns_enabled                    = false
+      + large_file_share_enabled          = (known after apply)
+      + location                          = "southindia"
+      + min_tls_version                   = "TLS1_2"
+      + name                              = "srestacct220711"
+      + nfsv3_enabled                     = false
+      + primary_access_key                = (sensitive value)
+      + primary_blob_connection_string    = (sensitive value)
+      + primary_blob_endpoint             = (known after apply)
+      + primary_blob_host                 = (known after apply)
+      + primary_connection_string         = (sensitive value)
+      + primary_dfs_endpoint              = (known after apply)
+      + primary_dfs_host                  = (known after apply)
+      + primary_file_endpoint             = (known after apply)
+      + primary_file_host                 = (known after apply)
+      + primary_location                  = (known after apply)
+      + primary_queue_endpoint            = (known after apply)
+      + primary_queue_host                = (known after apply)
+      + primary_table_endpoint            = (known after apply)
+      + primary_table_host                = (known after apply)
+      + primary_web_endpoint              = (known after apply)
+      + primary_web_host                  = (known after apply)
+      + queue_encryption_key_type         = "Service"
+      + resource_group_name               = "azdb220711"
+      + secondary_access_key              = (sensitive value)
+      + secondary_blob_connection_string  = (sensitive value)
+      + secondary_blob_endpoint           = (known after apply)
+      + secondary_blob_host               = (known after apply)
+      + secondary_connection_string       = (sensitive value)
+      + secondary_dfs_endpoint            = (known after apply)
+      + secondary_dfs_host                = (known after apply)
+      + secondary_file_endpoint           = (known after apply)
+      + secondary_file_host               = (known after apply)
+      + secondary_location                = (known after apply)
+      + secondary_queue_endpoint          = (known after apply)
+      + secondary_queue_host              = (known after apply)
+      + secondary_table_endpoint          = (known after apply)
+      + secondary_table_host              = (known after apply)
+      + secondary_web_endpoint            = (known after apply)
+      + secondary_web_host                = (known after apply)
+      + shared_access_key_enabled         = true
+      + table_encryption_key_type         = "Service"
+
+      + blob_properties {
+          + change_feed_enabled      = (known after apply)
+          + default_service_version  = (known after apply)
+          + last_access_time_enabled = (known after apply)
+          + versioning_enabled       = (known after apply)
+
+          + container_delete_retention_policy {
+              + days = (known after apply)
+            }
+
+          + cors_rule {
+              + allowed_headers    = (known after apply)
+              + allowed_methods    = (known after apply)
+              + allowed_origins    = (known after apply)
+              + exposed_headers    = (known after apply)
+              + max_age_in_seconds = (known after apply)
+            }
+
+          + delete_retention_policy {
+              + days = (known after apply)
+            }
+        }
+
+      + network_rules {
+          + bypass                     = (known after apply)
+          + default_action             = (known after apply)
+          + ip_rules                   = (known after apply)
+          + virtual_network_subnet_ids = (known after apply)
+
+          + private_link_access {
+              + endpoint_resource_id = (known after apply)
+              + endpoint_tenant_id   = (known after apply)
+            }
+        }
+
+      + queue_properties {
+          + cors_rule {
+              + allowed_headers    = (known after apply)
+              + allowed_methods    = (known after apply)
+              + allowed_origins    = (known after apply)
+              + exposed_headers    = (known after apply)
+              + max_age_in_seconds = (known after apply)
+            }
+
+          + hour_metrics {
+              + enabled               = (known after apply)
+              + include_apis          = (known after apply)
+              + retention_policy_days = (known after apply)
+              + version               = (known after apply)
+            }
+
+          + logging {
+              + delete                = (known after apply)
+              + read                  = (known after apply)
+              + retention_policy_days = (known after apply)
+              + version               = (known after apply)
+              + write                 = (known after apply)
+            }
+
+          + minute_metrics {
+              + enabled               = (known after apply)
+              + include_apis          = (known after apply)
+              + retention_policy_days = (known after apply)
+              + version               = (known after apply)
+            }
+        }
+
+      + routing {
+          + choice                      = (known after apply)
+          + publish_internet_endpoints  = (known after apply)
+          + publish_microsoft_endpoints = (known after apply)
+        }
+
+      + share_properties {
+          + cors_rule {
+              + allowed_headers    = (known after apply)
+              + allowed_methods    = (known after apply)
+              + allowed_origins    = (known after apply)
+              + exposed_headers    = (known after apply)
+              + max_age_in_seconds = (known after apply)
+            }
+
+          + retention_policy {
+              + days = (known after apply)
+            }
+
+          + smb {
+              + authentication_types            = (known after apply)
+              + channel_encryption_type         = (known after apply)
+              + kerberos_ticket_encryption_type = (known after apply)
+              + versions                        = (known after apply)
+            }
+        }
+    }
+
+  # module.dbmodule.azurerm_storage_container.sre_stcontainer will be created
+  + resource "azurerm_storage_container" "sre_stcontainer" {
+      + container_access_type   = "private"
+      + has_immutability_policy = (known after apply)
+      + has_legal_hold          = (known after apply)
+      + id                      = (known after apply)
+      + metadata                = (known after apply)
+      + name                    = "vhds"
+      + resource_manager_id     = (known after apply)
+      + storage_account_name    = "srestacct220711"
+    }
+
+  # module.dbmodule.azurerm_storage_queue.sre_storageq will be created
+  + resource "azurerm_storage_queue" "sre_storageq" {
+      + id                   = (known after apply)
+      + name                 = "srestqueue220711"
+      + storage_account_name = "srestacct220711"
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+azurerm_resource_group.sre_handson: Creating...
+azurerm_resource_group.sre_handson: Creation complete after 3s [id=/subscriptions/9035580b-9584-43fc-aad5-db913bac8f63/resourceGroups/azdb220711]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Creating...
+module.dbmodule.azurerm_mysql_server.sre_mysql: Creating...
+module.dbmodule.azurerm_storage_account.sre_storageacct: Creating...
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [10s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [10s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [10s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [20s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [20s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [20s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [30s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [30s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [30s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [40s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [40s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [40s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [50s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [50s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [50s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [1m0s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [1m0s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [1m0s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [1m10s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [1m10s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [1m10s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [1m20s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [1m20s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [1m20s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [1m30s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [1m30s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [1m30s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [1m40s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [1m40s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [1m40s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [1m50s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [1m50s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [1m50s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [2m0s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [2m0s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Still creating... [2m0s elapsed]
+module.dbmodule.azurerm_mysql_server.sre_mysql: Creation complete after 2m9s [id=/subscriptions/9035580b-9584-43fc-aad5-db913bac8f63/resourceGroups/azdb220711/providers/Microsoft.DBforMySQL/servers/ms-d22m0711]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [2m10s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [2m10s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [2m20s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [2m20s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [2m30s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [2m30s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [2m40s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [2m40s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [2m50s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [2m50s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [3m0s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [3m0s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [3m10s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [3m10s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [3m20s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [3m20s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [3m30s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [3m30s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [3m40s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [3m40s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [3m50s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [3m50s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [4m0s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [4m0s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [4m10s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [4m10s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [4m20s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [4m20s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [4m30s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [4m30s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [4m40s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [4m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [4m50s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [4m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [5m0s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [5m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [5m10s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [5m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [5m20s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [5m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [5m30s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [5m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [5m41s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [5m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [5m51s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [5m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [6m1s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [6m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [6m11s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [6m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [6m21s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [6m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [6m31s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [6m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [6m41s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [6m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [6m51s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [6m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [7m1s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [7m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [7m11s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [7m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [7m21s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [7m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [7m31s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [7m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [7m41s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [7m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [7m51s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [7m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [8m1s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [8m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [8m11s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [8m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [8m21s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [8m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [8m31s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [8m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [8m41s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Still creating... [8m41s elapsed]
+module.dbmodule.azurerm_storage_account.sre_storageacct: Creation complete after 8m43s [id=/subscriptions/9035580b-9584-43fc-aad5-db913bac8f63/resourceGroups/azdb220711/providers/Microsoft.Storage/storageAccounts/srestacct220711]
+module.dbmodule.azurerm_storage_queue.sre_storageq: Creating...
+module.dbmodule.azurerm_storage_container.sre_stcontainer: Creating...
+module.dbmodule.azurerm_storage_queue.sre_storageq: Creation complete after 1s [id=https://srestacct220711.queue.core.windows.net/srestqueue220711]
+module.dbmodule.azurerm_storage_container.sre_stcontainer: Creation complete after 1s [id=https://srestacct220711.blob.core.windows.net/vhds]
+module.dbmodule.data.azurerm_storage_blob.sre_storageblob: Reading...
+module.dbmodule.data.azurerm_storage_blob.sre_storageblob: Read complete after 0s
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [8m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [9m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [9m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [9m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [9m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [9m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [9m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [10m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [10m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [10m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [10m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [10m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [10m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [11m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [11m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [11m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [11m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [11m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [11m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [12m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [12m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [12m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [12m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [12m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [12m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [13m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [13m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [13m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [13m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [13m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [13m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [14m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [14m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [14m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [14m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [14m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [14m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [15m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [15m11s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [15m21s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [15m31s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [15m41s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [15m51s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [16m1s elapsed]
+module.dbmodule.azurerm_redis_cache.sre_redis_cache: Still creating... [16m11s elapsed]

@@ -12,8 +12,12 @@ description ="name of the location"
 default     = "southindia"
 }
 
+# variable "staccountkey" {
+# description ="storage account key"
+# #default     = "MnyPpsAsEw8PpytOUQyt+tvK1MCKNBUXQfCmof/Z85RY6NXIN6D+mMo9MotSvvX9lQ+9zaxyzEyI+AStF7W7sg=="
+# }
 variable "address" {
 type =list
 description = "specify the address"
-default = ["10.0.0.0/16"]
+default = ["10.70.0.0/16"]
 }

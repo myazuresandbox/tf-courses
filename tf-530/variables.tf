@@ -1,17 +1,36 @@
-variable "name" {
-  type= list
-  default = ["A","B","C"]
-}
-variable "location" {
-default     = "southindia"
-}
-variable "resource_group" {
-default = "rg-tf-39888"
-}
-variable "address" {
-default = ["10.0.0.0/16"]
+# Use variables to customize the deployment
+variable "env" {
+  type    = string
+  default = "rbpoc"
 }
 
-variable "no_of_vnets" {
-default = 2
+
+variable "root_id" {
+  type    = string
+  default = "rb"
 }
+
+variable "root_name" {
+  type    = string
+  default = "RBPLC"
+}
+
+
+variable "client_secret" {
+  type    = string
+  default = "VUZzXxNdjj"
+}
+
+
+variable "location" {
+  type        = string
+  description = "The location/region where the resources will be created."
+  default     = "southindia"
+}
+
+variable "resource_group_name" {
+  type        = string
+  description = "The resources name to be used."
+  default     = "azdb220711"
+}
+
