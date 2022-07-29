@@ -1,0 +1,74 @@
+Terraform Concepts
+You know that Terraform is a tool for creating immutable infrastructure.
+It allows you to write the code in declarative manner while tracking the state of infrastructure.
+Terraform allows you to make reusable code.
+In this topic, you will learn how to work with workspaces using Terraform.
+
+Workspaces
+Every terraform configurations has associate backends which defines how the operations are executed and where the persistent data like terraform state are stored.
+Persistent data stored in backend belongs to a workspace.
+Previously, the backend has only one workspace which is called as default and there will be only one state file associated with the configuration.
+Some of the backends support multiple workspaces, i.e. It allows multiple state files to be stored within a single configuration.
+The configuration is still having only one backend, and the multiple distinct instances can be deployed without configuring to a new backend or by changing authentication credentials.
+
+Using Workspaces
+In the previous cards, you have learned that terraform starts with a single workspace named default.
+default workspace is special because you can't delete the default workspace.
+If you haven't created the workspace before, then you are working on the default workspace.
+Workspaces in Terraform are managed by the terraform workspace set of commands
+You can create a new workspace and switch to it whenever needed.
+In the following cards, you will learn how to create and work with workspaces.
+
+Workspaces
+Every terraform configurations has associate backends which defines how the operations are executed and where the persistent data like terraform state are stored.
+Persistent data stored in backend belongs to a workspace.
+Previously, the backend has only one workspace which is called as default and there will be only one state file associated with the configuration.
+Some of the backends support multiple workspaces, i.e. It allows multiple state files to be stored within a single configuration.
+The configuration is still having only one backend, and the multiple distinct instances can be deployed without configuring to a new backend or by changing authentication credentials.
+
+Multiple Workspaces
+Below are the backends that currently support multiple workspaces:
+
+AzureRM(azure) - Stores the state in blob container on Microsoft Azure Storage.
+S3 - Stores the state in bucket of Amazon S3.
+Consul - Stores state in consul KV store at a given path.
+Local - The local backend stores the state file in the local file system.
+GCS - Stores the state as object in configurable prefix and bucket on GCS (Google Cloud Storage).
+Manta - It stores the state as articraft in manta.
+
+Using Workspaces
+In the previous cards, you have learned that terraform starts with a single workspace named default.
+default workspace is special because you can't delete the default workspace.
+If you haven't created the workspace before, then you are working on the default workspace.
+Workspaces in Terraform are managed by the terraform workspace set of commands
+You can create a new workspace and switch to it whenever needed.
+In the following cards, you will learn how to create and work with workspaces.
+
+Below are the commands related to Terraform in workspace.
+
+terraform workspace new <name> - It creates the workspace with specified name and switches to it.
+terraform workspace list - It lists the workspaces available.
+terraform workspace select <name> - It switches to the specified workspace.
+terraform workspace delete <name> - It deletes the mentioned workspace.
+
+Now, let's see something practical on how to create and use this workspace.
+
+Creating Workspace
+You can go to any terraform directory which you have created before and run the commands.
+If you run below command, you will get the output as default. The * indicates the current directory.
+
+terraform workspace list
+*default
+
+Now, create a workspace with the name myworkspace by executing the below command.
+
+terraform workspace new myworkspace
+
+default
+*myworkspace
+You can switch to the default workspace by terraform workspace select default.
+
+Points to Remember
+You cannot delete the default directory that throws an error.
+
+You cannot delete your active workspace (the workspace in which you are currently working).

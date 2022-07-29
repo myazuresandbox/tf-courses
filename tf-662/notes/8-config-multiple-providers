@@ -1,0 +1,90 @@
+Multiple Providers
+Terraform is used to create and manage the infrastructure resources like virtual networks, subnets, and load balancers.
+Any infrastructure in Terraform is represented as a resource.
+A provider understands the API interactions and provides the right resources to terraform.
+You can get the list of providers from here.
+You can find the major cloud providers from here. They offer a large number of services including IaaS, PaaS and SaaS.
+
+The above picture represents some of the cloud providers.
+Terraform manages multiple providers by making proper API calls to the respective cloud provider.
+The image explains how terraform can manage multiple clouds.
+In the previous card, you learned how to check official providers. You can get the official repositories of cloud providers from here.
+
+Configuring Multiple Providers
+In this topic, you will learn how to configure multiple resources(AWS and AzureRM).
+If you have an AWS account that will be helpful. If not, you can go on and create a free account to check the working with multiple providers.
+Below is the file structure that you will maintain for working with multiple providers.
+
+      multiple_providers
+       |___awsmain.tf
+       |___azuremain.tf
+       |___vars.tf
+       |___out.tf
+Let's proceed and create configure multiple providers using terraform.
+Creating awsmain.tf file
+To continue with AWS, you need an access key and secret key, which are used to configure the AWS environment.
+Create an S3 bucket in AWS which helps to store and retrieve the data.
+Here is the configuration syntax for AWS to create an S3 bucket
+
+resource "aws_s3_bucket" "b" {
+  bucket = "my-tf-test-bucket-21"
+  acl    = "private"
+
+  tags = {
+    Name        = "My bucket test"
+    Environment = "Dev"
+  }
+}
+
+Explaining main.tf File
+Resource has two parameters: name(aws_s3_bucket) and type("b").
+Name of the resource may vary from provider to provider. Type of the resource depends on the user.
+Bucket indicates the name of the bucket. If it is not assigned, terraform assigns a random unique name.
+acl (access control list) - It helps to manage access to the buckets and objects.
+tag - It is a label which is assigned to the AWS resource by you or AWS.
+Environment - On which environment do you like to deploy S3 bucket (Dev, Prod or Stage).
+
+Creating azuremain.tf file
+In this card, you will learn how to create storage account in Azure using Terraform.
+resource "azurerm_storage_account""storageacct"
+{
+name = "storageacct21"
+resource_group_name = "${var.rg}"
+location = "${var.loc}"
+account_replication_type = "LRS"
+account_tier = "Standard"
+}
+You can get the format of how to create a storage account from here.
+
+Parameters:
+name - It indicates the name of the storage account.
+resource_group_name and location- name of the resource group and location.
+account_replication_type - Type of the account replication.
+account_tier - Account tier type
+outputs.tf
+You can get the output by defining the format in output.tf file.
+For example, if you are creating a storage account and if you need the location, name and any details of the configuration, you can use the ouput command.
+Suppose, if you like to know the account_tier of your storage account, you can follow the below syntax.
+output "account_tier"
+{
+value = "azurerm_storage_Account.storagecct.account_tier"
+}
+You can check the output by using terraform output command.
+
+terraform plan and terraform apply
+When you run terraform plan, provide the region to create the resource in that region.
+If there are no errors, proceed further and run terraform apply to notice the changes
+Log in to Azure portal and navigate to the storage account. Your storage account will be up and running.
+Login to the aws console and navigate to the s3_bucket. Your s3 bucket will be up and running.
+In the same way, you can configure multiple service providers and run them.
+
+Summary
+Hope you enjoyed the course. Now, let's list down the takeaways from this course.
+
+Terraform Module Registry
+Nested Modules
+Remote Backends
+Terraform Workspace
+Configuring Multiple Providers
+Terragrunt
+Built-in functions
