@@ -1,0 +1,134 @@
+Prelude
+In this topic, you are going to learn about:
+Remote backends
+Creating a storage account and storage container
+Configuring remote backends
+Sensitive parameter
+
+Why Backend?
+In theTerraform Constructs course, you have learned that backend will be helpful when working in a team.
+It is better to store the file in a local when you are the only person in the project. When multiple persons are working in a project, it is not a good idea to store the state file in local.
+It is better to store the code in a central repository, GitHub is the first thought when it comes to the central repository.
+However, is having some disadvantages of doing so:
+You have to maintain push, pull configurations. If one pushes the wrong configuration and commits it, it becomes a problem.
+State file consists of sensitive information. So state files are non-editable.
+Then how to maintain a state file? Terraform has a feature of backend which helps to solve this issue. Read further to know about the backend.
+
+
+Backend
+Backend in terraform explains how the state file is loaded and operations are executed.
+Backend can get initialize only after running terraform init command.
+So, terraform init is required to be run every time
+when backend is configured.
+when any changes made to the backend
+when the backend configuration is removed completely
+terraform will auto-detect when the initialization is required and errors out in that situation.
+Terraform cannot perform auto-initialize because it may require additional info from the user, to perform state migrations, etc..
+Creating Backend
+In this topic, you will learn how to create backend in azure using terraform.
+You can get the code snippet to create backend from here.
+Below are the steps which you will be maintaining for creating backend.
+Create a storage account
+Create a storage container
+Create a backend
+Get the storage account access key and resource group name, give it as a parameter to the backend.
+Proceed further to know how to create backend in azure using terraform
+
+File Structure for Creating Backend
+Below is the complete file structure for backend. You will create backend.tf in the end.
+Backend
+   |____stoacct.tf
+   |____stocontainer.tf
+   |____backend.tf
+   |____vars.tf
+   |____output.tf
+Note: It is not mandatory to create the files and folder with the same name you can give the names on your own
+However, make sure that you are adding an extension of (.tf) terraform files. Because terraform loads only .tf files.
+Proceed further to create a storage account and storage container in Azure.
+
+storage account and storage container
+Create stoacct.tf file in the folder and write the code to create a storage account. You can get the storage account code from here and modify the parameters as required.
+resource "azurerm_storage_account" "storageaccount" {
+  name                     = "storageaccountname"
+  resource_group_name      = "${var.resourcegroup}"
+  location                 = "${var.location}"
+  account_tier             = "${var.accounttier}"
+  account_replication_type = "GRS"
+
+  tags {
+    environment = "staging"
+  }
+}
+You can do the same thing to create a storage container and get the code from here.
+resource "azurerm_storage_container" "storagecontainer" {
+  name                  = "vhds"
+  resource_group_name   = "${var.resourcegroup}"
+  storage_account_name  = "${azurerm_storage_account.storageaccount.name}"
+  container_access_type = "private"
+}
+Modify the storage container and storage account parameters as per your requirement.
+Creating vars.tf file
+You will pass the variables from vars.tf file, and your variables.tf file will look somewhat like this
+
+variable "resourcegroup"
+{
+default = "user-abcd"
+}
+variable "location"
+{
+default = "eastus"
+}
+variable "accounttier"
+{
+default = "Basic"
+}
+You can pass the variables in run time, and you can give the description of why it is used as shown above.
+
+output.tf file
+Here are some of the output parameters which you can get from the storage account and storage container.
+output "storageacctname" {
+value = "${azurerm_storage_account.storageaccount.name}"
+}
+output "storageacctcontainer" {
+value = "${azurerm_storage_account.storagecontainer.name}"
+}
+output "access_key" {
+value = "${azurerm_storage_account.storageaccount.primary_access_key"
+}
+Not only them, but you can also get the output for other parameters too.
+
+terraform plan and terraform apply
+terraform fmt help in aligning the format so, the configuration is aligned in a neat format.
+It's time to run terraform plan proceed and run the terraform plan command once it is done. You will get an idea of how the resources are going to be created.
+If the plan gives the output of what you expected, proceed further and run terraform apply.
+Successfully, you have created a storage account and storage container. Now, it's time to create backend.
+Before creating backend, run the command to get the storage account keys list(az storage account keys list --account-name storageacctname) and copy one of the key somewhere. It is useful for configuring the backend.
+
+Creating Backend
+Now, it's time to create backend and store the state file in the backend. Now, you can get the configuration of creating backend from here.
+Now, create a file with backend.tf and paste the below code in it
+terraform{
+backend   "azurerm"
+{
+storage_account_name = "storageacct21"
+container_name = "mycontainer"
+key = "terraform.tfstate.change"
+resource_group_name = "user-okvt"
+access_key = "aJlf+XjZhxwRp4gsU4hkGrQJzO7xBzz7B9rSzMLB/ozwcM6k/1N.......==" 
+}
+}
+Parameters:
+
+storage_account_name - name of the storage account.
+container_name - name of the container.
+key- name of the tfstate blob.
+resource_group_name - name of the resource group.
+access_key - Storage account access key(any one).
+
+
+Points to Remember
+You cannot use interpolation syntax to configure backends.
+After creating backend run terraform init, it will be in the locked state.
+By running terraform apply command automatically, the lease status is changed to locked.
+After it is applied, it will come to an unlocked state.
+This backend supports consistency checking and state locking using the native capabilities of the Azure storage account.

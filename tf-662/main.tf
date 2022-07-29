@@ -1,13 +1,13 @@
 resource "azurerm_resource_group" "rg-tf-662" {
-  name = "${var.resource_group}"
-  location   = "${var.location}"
+  name     = var.resource_group
+  location = var.location
 }
 
 resource "azurerm_virtual_network" "vnet" {
-name = "${var.name}"
-address_space = "${var.address}"
-resource_group_name = azurerm_resource_group.rg-tf-662.name
-location = azurerm_resource_group.rg-tf-662.location
+  name                = var.name
+  address_space       = var.address
+  resource_group_name = azurerm_resource_group.rg-tf-662.name
+  location            = azurerm_resource_group.rg-tf-662.location
 }
 
 #az storage account keys list --account-name sttf661hdv
@@ -25,7 +25,7 @@ resource "azurerm_storage_account" "storageaccount" {
 
 resource "azurerm_storage_container" "storagecontainer" {
   name                  = "vhds"
-  storage_account_name  = "${azurerm_storage_account.storageaccount.name}"
+  storage_account_name  = azurerm_storage_account.storageaccount.name
   container_access_type = "private"
 }
 

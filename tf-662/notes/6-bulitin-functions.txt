@@ -1,0 +1,66 @@
+Prelude
+In this topic, you are going to learn about some of the special functions available in Terraform.
+lookup
+local values
+data
+concat
+contains
+
+lookup
+This helps in performing a dynamic lookup into a map variable.
+The syntax for lookup variable is lookup(map,key, [default]).
+
+Parameters:
+map: The map parameter is a variable like var.name.
+key: The key parameter includes the key from where it should find the environment.
+
+If the key doesn't exist in the map, interpolation will fail, if it doesn't find a third argument (default).
+The lookup will not work on nested lists or maps. It only works on flat maps.
+
+Local Values
+Local values help in assigning names to the expressions, which can be used multiple times within a module without rewriting it.
+Local values are defined in the local blocks.
+If variables are function arguments (inputs) and outputs are function return values, then the local values are like a function local variables.
+It is recommended to group the logically related local values together as a single block, if there is a dependency between them.
+
+Defining local:
+locals
+{
+service_name = "Fresco"
+owner = "Team"
+}
+Here is an other example for you:
+
+locals {
+  instance_ids = "${concat(aws_instance.blue.*.id, aws_instance.green.*.id)}"
+}
+You will learn what is the use of concat in the following cards.
+
+When to Use Locals?
+If a single value or a result is used in many places and it is likely to be changed in the future, then you can go with locals.
+It is recommended to not use many local values because it makes the read configurations hard to the future maintainers.
+
+Data Source
+Data source allows the data to be computed or fetched for use in Terraform configuration.
+Data sources allow the terraform configurations to build on the information defined outside the Terraform or by another Terraform configuration.
+Providers play a major role in implementing and defining data sources.
+Data source helps in two major ways:
+It provides a read-only view for the pre-existing data.
+It can compute new values on the fly.
+
+Configuring Data Source
+The data source can receive the data from Terraform enterprise, consul or look-up into a pre-existing azure resource by filtering on tags and attributes.
+Every data source in the Terraform is mapped to the provider depending on the longest-prefix-matching.
+data "azurerm_resource_group" "passed" {
+  name = "${var.resource_group_name}"
+}
+Concat and Contains
+
+concat(list1,list2)
+It combines two or more lists into a single list.
+E.g.: concat(aws_instance.db..tags.Name, aws_instance.web..tags.Name)
+
+contains(list, element)
+It returns true if the element is present in the list or else false.
+E.g.: contains(var.list_of_strings, "an_element")
+

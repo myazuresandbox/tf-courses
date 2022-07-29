@@ -1,0 +1,92 @@
+Terragrunt
+Terragrunt is referred to as a thin wrapper for Terraform which provides extra tools to keep the terraform configurations DRY, manage remote state and to work with multiple terraform modules.
+
+Commands
+Below are the commands for terragrunt.
+
+terragrunt get
+terragrunt plan
+terragrunt apply
+terragrunt output
+terragrunt destroy
+
+Why Terragrunt?
+Terragrunt supports the following use cases:
+
+Keeps terraform code DRY.
+Remote state configuration DRY.
+CLI flags DRY.
+Executing terraform commands on multiple modules at a time.
+In the following cards, you will learn how to utilize remote state using Terragrunt.
+
+Introduction
+In the previous topics, you have learned creating backend in Azure. Now let's learn how to store the state file in AWS.
+In AWS, the state file is stored in amazon s3 bucket.
+Even though the state file is stored in the remote backend, there is a problem that multiple users may modify the state file.
+There is an open source tool called terragrunt, which manages the remote state automatically and provides locking with the help of Amazon DynamoDB.
+
+Creating S3
+The below code is used to configure the backend in AWS.
+
+terraform {
+  backend "s3" {
+    bucket = "mybucket"
+    key    = "my/keybucket"
+    region = "us-east-2"
+  }
+}
+In AWS, the above format is used to store the state file in S3 bucket. Now, you will learn how locking is achieved in the upcoming cards.
+
+.terragrunt
+Now, install terragrunt, create a file with the name .terragrunt and fill it with your configuration values.
+
+
+lock = {
+  backend = "dynamodb"
+  config {
+    state_file_id = "app-name"
+  }
+}
+
+remote_state = {
+  backend = "s3"
+  config {
+    encrypt = "true"
+    bucket = "mybucket"
+    key = "terraform.tfstate"
+    region = "us-east-2"
+  }
+}
+In the first part, terragrunt is configured to use DynamoDB for locking (lock)
+In the second part, you are configuring terragrunt to automatically store the tfstate files in S3 (remote_state)
+.terragrunt files follow the same syntax as HCL.
+Running Files
+Once the file is saved, you can run the commands related to terragrunt like terragrunt plan, terragrunt apply, and check how it is working.
+Terragrunt forwards almost all arguments, commands and options to the terrafrom directly.
+Terragrunt ensures that the remote state setting is configured as per the settings in .terragrunt file.
+For apply and destroy commands, terragrunt acquires locking using DynamoDB.
+Proceed further to know how it is performed in action.
+erragrunt apply
+> terragrunt apply
+[terragrunt] Configuring remote state for the s3 backend
+[terragrunt] Running command: terraform remote config 
+[terragrunt] Attempting to acquire lock in DynamoDB
+[terragrunt] Attempting to create lock item table terragrunt_locks
+[terragrunt] Lock acquired!
+[terragrunt] Running command: terraform apply
+terraform apply
+aws_instance.example: Creating…
+ ami: “” => “ami-0d729a...”
+ instance_type: “” => “t2.mi...”
+(...)
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+[terragrunt] Attempting to release lock
+[terragrunt] Lock released!
+
+From the above output, you can know that terragrunt automatically configures the remote backend as described in .terragrunt file.
+It uses DynamoDB for locking purpose and then run terraform apply.
+If any other person is already having a lock, terragrunt will wait until the lock is released to prevent race conditions.
+Advantages of Using Terragrunt
+Below are the advantages of using terragrunt:
+Provides locking mechanism.
+Allows you to use remote state always.
