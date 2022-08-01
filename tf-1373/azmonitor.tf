@@ -16,6 +16,13 @@ resource "random_id" "randomId" {
 
   byte_length = 8
 }
+
+# generate a random string (consisting of six characters)
+resource "random_string" "random" {
+  length  = 6
+  upper   = false
+  special = false
+}
 # Create storage account for log collection
 resource "azurerm_storage_account" "mystorageaccount" {
   name                     = "log${random_id.randomId.hex}"
@@ -31,12 +38,12 @@ resource "azurerm_storage_container" "mystcontainer" {
   container_access_type = "private"
 }
 
-resource "azurerm_storage_queue" "sre_storageq" {
+resource "azurerm_storage_queue" "mystorageq" {
   name                 = "stq${random_id.randomId.hex}"
   storage_account_name = azurerm_storage_account.mystorageaccount.name
 }
 
-data "azurerm_storage_blob" "sre_storageblob" {
+data "azurerm_storage_blob" "mystorageblob" {
   name                   = "stb${random_id.randomId.hex}"
   storage_account_name   = azurerm_storage_account.mystorageaccount.name
   storage_container_name = azurerm_storage_container.mystcontainer.name
@@ -47,4 +54,18 @@ data "azurerm_storage_blob" "sre_storageblob" {
 resource "tls_private_key" "myssh" {
   algorithm = "RSA"
   rsa_bits  = 4096
+}
+
+
+resource "azurerm_resource_group" "log" {
+  name     = random_pet.rg-name.id
+  location  = var.resource_group_location
+}
+
+resource "azurerm_log_analytics_workspace" "law" {
+  name                = "log${random_string.random.id}"
+  location            = azurerm_resource_group.log.location
+  resource_group_name = azurerm_resource_group.log.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
 }
